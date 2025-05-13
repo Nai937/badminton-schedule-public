@@ -4,3 +4,4 @@ seaborn
 python-dotenv
 scikit-learn
 schedule
+pytz
