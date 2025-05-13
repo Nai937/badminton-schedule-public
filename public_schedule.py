@@ -2,6 +2,7 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 from datetime import datetime
+import pytz
 
 # ====== SETTINGS ======
 DB_PATH = "badminton_courts.db"
@@ -121,4 +122,5 @@ for court in courts:
 table_html += "</table>"
 st.markdown(table_html, unsafe_allow_html=True)
 
-st.caption(f"🕒 ตารางอัปเดตล่าสุด: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+thai_time = datetime.now(pytz.timezone("Asia/Bangkok"))
+st.caption(f"🕒 ตารางอัปเดตล่าสุด: {thai_time.strftime('%d/%m/%Y %H:%M:%S')}")
