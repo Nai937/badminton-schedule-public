@@ -3,6 +3,8 @@ import sqlite3
 import pandas as pd
 from datetime import datetime
 import pytz
+import os
+
 
 # ====== SETTINGS ======
 DB_PATH = "badminton_courts.db"
@@ -89,6 +91,19 @@ for _, row in df_r.iterrows():
     for slot in time_slots:
         if slot_range_overlap(slot, booking_range):
             court_schedule[court_key][slot] = status
+
+announcement_file = "announcement_tab4.txt"
+if os.path.exists(announcement_file):
+    with open(announcement_file, "r", encoding="utf-8") as f:
+        daily_announcement = f.read().strip()
+else:
+    daily_announcement = ""
+
+if daily_announcement:
+    st.markdown(
+        f"<div style='background-color:#fff3e0; border-left:6px solid #fb8c00; padding:12px; font-size:16px; border-radius:10px; color:#bf360c; margin-bottom:16px;'><b>📢 ประกาศ:</b> {daily_announcement}</div>",
+        unsafe_allow_html=True,
+    )
 
 # ====== RENDER TABLE ======
 table_html = f"""
