@@ -1,3 +1,6 @@
 streamlit
 pandas
+seaborn
 python-dotenv
+scikit-learn
+schedule
