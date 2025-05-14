@@ -68,7 +68,8 @@ def generate_slots(start_hour=15, end_hour=23):
 st.title("📋 ตารางแสดงสถานะคอร์ด (Reserve)")
 selected_date = st.date_input("📅 เลือกวันที่แสดงตาราง", value=datetime.now().date())
 date_str = selected_date.strftime("%Y-%m-%d")
-thai_date_str = format_thai_date(selected_date)
+thai_now = datetime.now(pytz.timezone("Asia/Bangkok"))
+thai_date_str = format_thai_date(thai_now)
 
 df_r = get_reserves(date=date_str).copy()
 df_r["note"] = df_r["note"].fillna("")
